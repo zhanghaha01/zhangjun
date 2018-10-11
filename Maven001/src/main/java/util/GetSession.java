@@ -25,6 +25,6 @@ public class GetSession {
 		}else{
 			System.out.println("NO");
 		}
-		System.out.println("李昱贤傻逼");
+		System.out.println("liyuxianshabi");
 	}
 }
