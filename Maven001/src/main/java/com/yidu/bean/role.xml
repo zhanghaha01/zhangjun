@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yidu.dao.RoleDao">
+	<resultMap type="RoleBean" id="stuMap">
+		<result column="roleId" property="roleId"/>
+		<result column="roleName" property="roleName"/>
+		<collection property="RoleBean" column="menuId" ofType="MenuBean" select="com.yidu.dao.RoleDao.selectByRoleId" />
+	</resultMap>
+	<select id="selectRoleIdByUserId" resultMap="stuMap">
+		SELECT roleId FROM userRole WHERE userId=#{userId}
+	</select>
+	<select id="selectByRoleId" resultMap="stuMap">
+		select * from rolemenu where roleId=#{roleId}
+	</select>
+</mapper>

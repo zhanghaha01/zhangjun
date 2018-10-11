@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yidu.dao.MenuDao">
+	<resultMap type="MenuBean" id="menuMap">
+		<result column="menuId" property="menuId"/>
+		<result column="title" property="title"/>
+		<result column="state" property="state"/>
+		<result column="menuUrl" property="menuUrl"/>
+		<result column="menuPid" property="menuPid"/>
+		<result column="menuLog" property="menuLog"/>
+		<result column="roleId" property="roleId"/>
+		
+	</resultMap>
+	<select id="selectAllByUserId" resultMap="menuMap">
+		SELECT * FROM menuInfo WHERE menuId IN(SELECT menuId FROM roleMenu WHERE roleId=#{roleId})
+	</select>
+</mapper>

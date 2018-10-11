@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 加载连接数据的配置文件 -->
+	<properties resource="mysql.properties"/>
+	<!-- 类的别名 -->
+	<typeAliases>
+		<!-- 两者即可:与类名保持一致，将类名遵循驼峰命名规则 ，全小写可以(不区分大小写)-->
+		<package name="com.yidu"/>
+	</typeAliases>
+  	<!-- 数据库配置环境连接信息 -->
+	<environments default="development">
+		<environment id="development">
+		    <!-- 配置事务管理(jdbc 受mybaits管理),spring -->
+			<transactionManager type="JDBC"/>
+			<!-- type:UNPOOLED 不使用连接池,POOLED应用连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driverclass}" />
+				<property name="url" value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.userpass}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 管理映射配置文件 -->
+  	<mappers>
+  		<mapper resource="com/yidu/bean/Student.xml" />
+  		<mapper resource="com/yidu/bean/menu.xml" />
+  		<mapper resource="com/yidu/bean/role.xml" />
+  		<mapper resource="com/yidu/bean/Product.xml" />
+  	</mappers>
+</configuration>
